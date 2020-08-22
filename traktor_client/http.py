@@ -33,7 +33,7 @@ class HttpClient:
             token (str): Traktor authentication token.
             timeout (int): Request timeout time.
         """
-        self.url = f"http://{url.rstrip('/')}/api/v0"
+        self.url = url
         self.token = token
         self.timeout = timeout
 
@@ -129,7 +129,7 @@ class HttpClient:
                     response=self.response,
                 ) from e
         elif self.response.status_code == 404:
-            raise errors.HttpNotFound(response=self.response)
+            raise errors.NotFound(response=self.response)
 
         # Check rate limit
         limit = self.response.headers.get("X-Ratelimit-Limit", None)

@@ -54,7 +54,7 @@ class HttpClientError(TraktorError):
     __repr__ = __str__
 
 
-class HttpNotFound(HttpClientError):
+class NotFound(HttpClientError):
     def __init__(self, response: Optional[Response] = None):
         super().__init__(message="Object not found", response=response)
 

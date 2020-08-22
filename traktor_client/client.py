@@ -18,7 +18,7 @@ from traktor_client.models import (
 class Client:
     def __init__(self, url):
         self.url = url
-        self.http = HttpClient(url=self.url)
+        self.http = HttpClient(url=f"{self.url.rstrip('/')}/api/v0")
 
     # Projects
 
@@ -117,7 +117,7 @@ class Client:
         return Timer(**self.http.post("/timer/stop/"))
 
     def timer_status(self) -> Timer:
-        return self.http.get("/timer/status/")
+        return Timer(**self.http.get("/timer/status/"))
 
     def timer_today(self) -> List[Report]:
         return [Report(**r) for r in self.http.get("/timer/today/")]
