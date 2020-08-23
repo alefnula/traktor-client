@@ -4,6 +4,7 @@ from typing import Optional, List
 from traktor_client import errors
 from traktor_client.http import HttpClient
 from traktor_client.models import (
+    Auth,
     Project,
     ProjectCreateRequest,
     ProjectUpdateRequest,
@@ -16,9 +17,27 @@ from traktor_client.models import (
 
 
 class Client:
-    def __init__(self, url):
+    def __init__(self, url, token):
         self.url = url
-        self.http = HttpClient(url=self.url)
+        self.http = HttpClient(
+            url=f"{self.url.rstrip('/')}/api/v0", token=token or ""
+        )
+
+    # Auth
+    def login(self, username: str, password: str) -> str:
+        """Obtain authentication token.
+
+        Args:
+            username: Traktor username.
+            password: Traktor password.
+
+        Returns:
+            str: Authentication token.
+        """
+        response = self.http.post(
+            "/auth/token/", data=Auth(username=username, password=password)
+        )
+        return response["token"]
 
     # Projects
 
@@ -117,7 +136,7 @@ class Client:
         return Timer(**self.http.post("/timer/stop/"))
 
     def timer_status(self) -> Timer:
-        return self.http.get("/timer/status/")
+        return Timer(**self.http.get("/timer/status/"))
 
     def timer_today(self) -> List[Report]:
         return [Report(**r) for r in self.http.get("/timer/today/")]
