@@ -21,7 +21,6 @@ class Config(TeaConfig):
         self.token = None
 
         super().__init__(config_file=self.config_dir / "traktor-client.ini")
-        # Load the values from configuration file
 
     @property
     def server_url(self):
