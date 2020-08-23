@@ -1,25 +1,22 @@
+__all__ = [
+    "TraktorError",
+    "InvalidConfiguration",
+    "HttpClientError",
+    "NotFound",
+    "HttpClientTimeout",
+    "HttpRateLimitExceeded",
+    "SerializationError",
+]
+
 import functools
 from typing import Optional
 
 from httpx import Response
+from console_tea.errors import ConsoleTeaError, InvalidConfiguration
 from pydantic import ValidationError as PydanticValidationError
 
 
-class TraktorError(Exception):
-    def __init__(self, message: str):
-        self.message = message
-
-    @property
-    def class_name(self):
-        return self.__class__.__name__
-
-    def __str__(self):
-        return f"{self.class_name}({self.message})"
-
-    __repr__ = __str__
-
-
-class InvalidConfiguration(TraktorError):
+class TraktorError(ConsoleTeaError):
     pass
 
 

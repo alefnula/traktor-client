@@ -4,6 +4,14 @@ from typing import Optional
 
 from pydantic import BaseModel, validator
 
+# Auth
+
+
+class Auth(BaseModel):
+    username: str
+    password: str
+
+
 # Colored
 
 

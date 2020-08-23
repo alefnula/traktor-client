@@ -1,11 +1,16 @@
 import typer
 from pathlib import Path
 
+from console_tea.console import command
+from console_tea.commands.config import app as config_app
+
 from traktor_client.config import config
 from traktor_client.commands.client import project_app, task_app, timer_app
 
 app = typer.Typer(name="traktor", help="Personal time tracking.")
 
+# Add console-tea apps
+app.add_typer(config_app)
 
 # Add traktor client subcommands
 app.add_typer(project_app)
@@ -29,6 +34,20 @@ def callback(
     if config_file is not None:
         config.config_file = config_file
         config.load()
+
+
+@command(app)
+def login():
+    """Obtain authentication token."""
+
+    username = typer.prompt("Username")
+    password = typer.prompt("Password", hide_input=True)
+
+    from traktor_client.client import Client
+
+    client = Client(config.server_url)
+    config.token = client.login(username=username, password=password)
+    config.save()
 
 
 @app.command(hidden=True)
