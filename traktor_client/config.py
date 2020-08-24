@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from console_tea.config import Config as TeaConfig, ConfigField
+from tea_console.config import Config as TeaConfig, ConfigField
 
 
 class Config(TeaConfig):

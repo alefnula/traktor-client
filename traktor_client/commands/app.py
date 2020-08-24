@@ -1,15 +1,15 @@
 import typer
 from pathlib import Path
 
-from console_tea.console import command
-from console_tea.commands.config import app as config_app
+from tea_console.console import command
+from tea_console.commands.config import app as config_app
 
 from traktor_client.config import config
 from traktor_client.commands.client import project_app, task_app, timer_app
 
 app = typer.Typer(name="traktor", help="Personal time tracking.")
 
-# Add console-tea apps
+# Add tea-console apps
 app.add_typer(config_app)
 
 # Add traktor client subcommands

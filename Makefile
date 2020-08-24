@@ -2,6 +2,7 @@
 .DEFAULT_GOAL := help
 PROJECT := traktor_client
 
+
 help:                ## Show help.
 	@grep -E '^[a-zA-Z2_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 

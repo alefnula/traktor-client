@@ -2,7 +2,7 @@ from typing import Optional
 
 import typer
 
-from console_tea.console import command
+from tea_console.console import command
 
 from traktor_client.config import config
 from traktor_client.client import Client
