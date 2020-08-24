@@ -17,7 +17,7 @@ from traktor_client.models import (
 
 
 class Client:
-    def __init__(self, url, token):
+    def __init__(self, url: str, token: Optional[str] = None):
         self.url = url
         self.http = HttpClient(
             url=f"{self.url.rstrip('/')}/api/v0", token=token or ""

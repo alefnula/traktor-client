@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from console_tea.config import Config as TeaConfig, ConfigField
+from tea_console.config import Config as TeaConfig, ConfigField
 
 
 class Config(TeaConfig):
@@ -21,7 +21,6 @@ class Config(TeaConfig):
         self.token = None
 
         super().__init__(config_file=self.config_dir / "traktor-client.ini")
-        # Load the values from configuration file
 
     @property
     def server_url(self):

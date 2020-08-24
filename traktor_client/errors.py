@@ -12,7 +12,7 @@ import functools
 from typing import Optional
 
 from httpx import Response
-from console_tea.errors import ConsoleTeaError, InvalidConfiguration
+from tea_console.errors import ConsoleTeaError, InvalidConfiguration
 from pydantic import ValidationError as PydanticValidationError
 
 
