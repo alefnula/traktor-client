@@ -1,45 +1,7 @@
-import re
 from datetime import datetime
 from typing import Optional
 
-from pydantic import BaseModel, validator
-
-# Auth
-
-
-class Auth(BaseModel):
-    username: str
-    password: str
-
-
-# Colored
-
-
-COLOR_RE = re.compile("^#([A-Fa-f0-9]{6})$")
-
-
-def color_validator(value):
-    if COLOR_RE.match(value) is None:
-        raise ValueError(f"Invalid color string: {value}")
-    return value
-
-
-class ColoredModel(BaseModel):
-    color: str
-
-    @validator("color")
-    def validate_color(cls, value):
-        return color_validator(value)
-
-
-class ColoredUpdateModel(BaseModel):
-    color: Optional[str] = None
-
-    @validator("color")
-    def validate_color(cls, value):
-        if value is None:
-            return None
-        return color_validator(value)
+from tea_client.models import TeaClientModel, ColoredModel, ColoredUpdateModel
 
 
 # Project
@@ -83,7 +45,7 @@ class TaskUpdateRequest(ColoredUpdateModel):
     default: Optional[bool] = None
 
 
-class Timer(BaseModel):
+class Timer(TeaClientModel):
     project: str
     task: str
     description: str
@@ -96,7 +58,7 @@ class Timer(BaseModel):
     end_time: Optional[datetime] = None
 
 
-class Report(BaseModel):
+class Report(TeaClientModel):
     project: str
     task: str
     duration: int
