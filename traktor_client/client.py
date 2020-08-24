@@ -1,9 +1,9 @@
 from typing import Optional, List
 
 from tea_client.http import HttpClient
+from tea_client.handler import handler
 from tea_client.models import AuthRequest
 
-from traktor_client.errors import handler
 from traktor_client.models import (
     Project,
     ProjectCreateRequest,

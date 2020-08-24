@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v0.0.4 (August 24, 2020)
+
+- Cleanup.
+
+
+---
+
+
 ## v0.0.3 (August 24, 2020)
 
 - Use `tea-client` library.
