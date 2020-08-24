@@ -4,4 +4,4 @@ __all__ = [
 ]
 
 from traktor_client.client import Client
-from traktor_client.errors import TraktorError
+from tea_client.errors import TeaClientError as TraktorError
