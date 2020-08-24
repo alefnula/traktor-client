@@ -1,6 +1,15 @@
 # CHANGELOG
 
-## v0.0.2 (August XX, 2020)
+
+## v0.0.3 (August 24, 2020)
+
+- Use `tea-client` library.
+
+
+---
+
+
+## v0.0.2 (August 24, 2020)
 
 - Fixes.
 
