@@ -9,6 +9,7 @@ from tea_client.models import TeaClientModel, ColoredModel, ColoredUpdateModel
 
 class Project(ColoredModel):
     id: str
+    user: str
     name: str
     color: str
     created_on: datetime
@@ -27,6 +28,7 @@ class ProjectUpdateRequest(ColoredUpdateModel):
 
 
 class Task(ColoredModel):
+    user: str
     project: str
     id: str
     name: str
@@ -46,6 +48,7 @@ class TaskUpdateRequest(ColoredUpdateModel):
 
 
 class Timer(TeaClientModel):
+    user: str
     project: str
     task: str
     description: str
@@ -59,6 +62,7 @@ class Timer(TeaClientModel):
 
 
 class Report(TeaClientModel):
+    user: str
     project: str
     task: str
     duration: int
