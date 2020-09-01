@@ -43,11 +43,19 @@ def login():
     username = typer.prompt("Username")
     password = typer.prompt("Password", hide_input=True)
 
-    from traktor_client.client import Client
+    from traktor_client.client import TraktorClient
 
-    client = Client(config.server_url)
-    config.token = client.login(username=username, password=password)
-    config.save()
+    client = TraktorClient(config=config)
+    client.login(username=username, password=password)
+
+
+@command(app)
+def refresh():
+    """Try to refresh authentication token."""
+    from traktor_client.client import TraktorClient
+
+    client = TraktorClient(config=config)
+    client.refresh()
 
 
 @app.command(hidden=True)

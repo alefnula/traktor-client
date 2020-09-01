@@ -1,7 +1,7 @@
 __all__ = [
-    "Client",
+    "TraktorClient",
     "TraktorError",
 ]
 
-from traktor_client.client import Client
+from traktor_client.client import TraktorClient
 from tea_client.errors import TeaClientError as TraktorError

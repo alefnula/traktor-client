@@ -1,8 +1,7 @@
 from typing import Optional, List
 
-from tea_client.http import HttpClient
+from tea_client.client import TeaClient
 from tea_client.handler import handler
-from tea_client.models import AuthRequest
 
 from traktor_client.models import (
     Project,
@@ -16,31 +15,7 @@ from traktor_client.models import (
 )
 
 
-class Client:
-    def __init__(self, url: str, token: Optional[str] = None):
-        self.url = url
-        self.http = HttpClient(
-            url=f"{self.url.rstrip('/')}/api/v0", token=token or ""
-        )
-
-    # Auth
-    @handler
-    def login(self, username: str, password: str) -> str:
-        """Obtain authentication token.
-
-        Args:
-            username: Traktor username.
-            password: Traktor password.
-
-        Returns:
-            str: Authentication token.
-        """
-        response = self.http.post(
-            "/auth/token/",
-            data=AuthRequest(username=username, password=password),
-        )
-        return response["token"]
-
+class TraktorClient(TeaClient):
     # Projects
 
     @handler
