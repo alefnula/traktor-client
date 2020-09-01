@@ -5,10 +5,10 @@ import typer
 from tea_console.console import command
 
 from traktor_client.config import config
-from traktor_client.client import Client
+from traktor_client.client import TraktorClient
 
 
-client = Client(url=config.server_url, token=config.token)
+client = TraktorClient(config=config)
 
 
 # Projects
